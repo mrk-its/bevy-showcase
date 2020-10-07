@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/bevy-example.css"/>
+  </head>
+  <body onload="">
+    <canvas id="canvas" tabindex="0" data-raw-handle="1" width="1280" height="720" alt="bevy" cursor="auto" __spector_context_type="webgl2" style="width: 1280px; height: 720px;">
+    </canvas>
+    <script>
+        let canvas = document.getElementById("canvas");
+        let gl = canvas.getContext("webgl2");
+        gl.viewport(0, 0, 1280, 720);
+        gl.enable(gl.BLEND);
+        gl.enable(gl.CULL_FACE);
+        gl.enable(gl.DEPTH_TEST);
+        gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+        gl.clearColor(0.4, 0.4, 0.4, 1.0);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+        var data;
+
+        let buffer0 = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer0);
+        data = new Uint8Array([0, 0, 0, 191, 0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 191, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 63, 0, 0, 0, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63]);
+        gl.bufferData(gl.ARRAY_BUFFER, data, gl.DYNAMIC_DRAW);
+
+        let buffer1 = gl.createBuffer();
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffer1);
+        data = new Uint8Array([0, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 2, 0, 0, 0]);
+        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, data, gl.DYNAMIC_DRAW);
+
+        var buffer2 = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer2);
+        data = new Uint8Array([0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 191, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 128, 191, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63]);
+        gl.bufferData(gl.ARRAY_BUFFER, data, gl.DYNAMIC_DRAW);
+
+        let buffer3 = gl.createBuffer();
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffer3);
+        data = new Uint8Array([0, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 5, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0, 7, 0, 0, 0, 4, 0, 0, 0, 8, 0, 0, 0, 9, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0, 11, 0, 0, 0, 8, 0, 0, 0, 12, 0, 0, 0, 13, 0, 0, 0, 14, 0, 0, 0, 14, 0, 0, 0, 15, 0, 0, 0, 12, 0, 0, 0, 16, 0, 0, 0, 17, 0, 0, 0, 18, 0, 0, 0, 18, 0, 0, 0, 19, 0, 0, 0, 16, 0, 0, 0, 20, 0, 0, 0, 21, 0, 0, 0, 22, 0, 0, 0, 22, 0, 0, 0, 23, 0, 0, 0, 20, 0, 0, 0]);
+        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, data, gl.DYNAMIC_DRAW);
+
+        let buffer4 = gl.createBuffer();
+        gl.bindBuffer(gl.UNIFORM_BUFFER, buffer4);
+        gl.bufferData(gl.UNIFORM_BUFFER, 64, gl.DYNAMIC_DRAW);
+
+        let buffer5 = gl.createBuffer();
+        gl.bindBuffer(gl.UNIFORM_BUFFER, buffer5);
+        gl.bufferData(gl.UNIFORM_BUFFER, 64, gl.DYNAMIC_DRAW);
+
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer5);
+        data = new Uint8Array([131, 193, 162, 63, 7, 54, 219, 62, 148, 80, 155, 62, 209, 40, 155, 62, 0, 0, 0, 0, 120, 90, 5, 64, 209, 109, 1, 191, 175, 76, 1, 191, 67, 34, 244, 62, 6, 36, 146, 191, 27, 22, 79, 191, 23, 225, 78, 191, 135, 104, 164, 51, 4, 2, 217, 51, 211, 136, 14, 65, 86, 100, 30, 65]);
+        gl.bufferSubData(gl.COPY_WRITE_BUFFER, 0, data, 0, 64);
+
+        let buffer6 = gl.createBuffer();
+        gl.bindBuffer(gl.UNIFORM_BUFFER, buffer6);
+        gl.bufferData(gl.UNIFORM_BUFFER, 976, gl.DYNAMIC_DRAW);
+
+        let buffer7 = gl.createBuffer();
+        gl.bindBuffer(gl.UNIFORM_BUFFER, buffer7);
+        gl.bufferData(gl.UNIFORM_BUFFER, 976, gl.DYNAMIC_DRAW);
+
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer7);
+        data = new Uint8Array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 215, 179, 221, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 215, 179, 221, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 171, 65, 128, 191, 0, 0, 128, 191, 215, 179, 221, 64, 215, 179, 93, 65, 130, 118, 131, 192, 0, 0, 128, 192, 0, 0, 128, 64, 0, 0, 0, 65, 0, 0, 128, 64, 0, 0, 128, 63, 255, 255, 127, 63, 255, 255, 127, 63, 255, 255, 127, 63, 0, 0, 128, 63]);
+        gl.bufferSubData(gl.COPY_WRITE_BUFFER, 0, data, 0, 112);
+
+        let vertex_shader_src = `#version 300 es
+          precision highp float;
+
+          in vec3 Vertex_Position;
+          in vec3 Vertex_Normal;
+          in vec2 Vertex_Uv;
+
+          out vec3 v_Position;
+          out vec3 v_Normal;
+          out vec2 v_Uv;
+
+          layout(std140) uniform Camera {
+              mat4 ViewProj;
+          };
+
+          layout(std140) uniform Transform {
+              mat4 Model;
+          };
+
+          void main() {
+              v_Normal = (Model * vec4(Vertex_Normal, 1.0)).xyz;
+              v_Normal = mat3(Model) * Vertex_Normal;
+              v_Position = (Model * vec4(Vertex_Position, 1.0)).xyz;
+              v_Uv = Vertex_Uv;
+              gl_Position = ViewProj * vec4(v_Position, 1.0);
+          }
+        `
+
+        let fragment_shader_src = `#version 300 es
+          precision highp float;
+
+          const int MAX_LIGHTS = 10;
+
+          struct Light {
+              mat4 proj;
+              vec4 pos;
+              vec4 color;
+          };
+
+          in vec3 v_Position;
+          in vec3 v_Normal;
+          in vec2 v_Uv;
+
+          out vec4 o_Target;
+
+          layout(std140) uniform Camera {
+              mat4 ViewProj;
+          };
+
+          layout(std140) uniform Lights {
+              uvec4 NumLights;
+              Light SceneLights[MAX_LIGHTS];
+          };
+
+          layout(std140) uniform StandardMaterial_albedo {
+              vec4 Albedo;
+          };
+
+          vec4 encodeSRGB(vec4 linearRGB_in)
+          {
+              vec3 linearRGB = linearRGB_in.rgb;
+              vec3 a = 12.92 * linearRGB;
+              vec3 b = 1.055 * pow(linearRGB, vec3(1.0 / 2.4)) - 0.055;
+              vec3 c = step(vec3(0.0031308), linearRGB);
+              return vec4(mix(a, b, c), linearRGB_in.a);
+          }
+
+          vec4 decodeSRGB(vec4 screenRGB_in)
+          {
+              vec3 screenRGB = screenRGB_in.rgb;
+              vec3 a = screenRGB / 12.92;
+              vec3 b = pow((screenRGB.rgb + 0.055) / 1.055, vec3(2.4));
+              vec3 c = step(vec3(0.04045), screenRGB.rgb);
+              return vec4(mix(a, b, c), screenRGB_in.a);
+          }
+
+          void main() {
+              vec4 output_color = Albedo;
+
+              vec3 normal = normalize(v_Normal);
+              vec3 ambient = vec3(0.05, 0.05, 0.05);
+              // accumulate color
+              vec3 color = ambient;
+              for (int i=0; i<int(NumLights.x) && i<MAX_LIGHTS; ++i) {
+                  Light light = SceneLights[i];
+                  // compute Lambertian diffuse term
+                  vec3 light_dir = normalize(light.pos.xyz - v_Position);
+                  float diffuse = max(0.0, dot(normal, light_dir));
+                  // add light contribution
+                  color += diffuse * light.color.xyz;
+              }
+              output_color.xyz *= color;
+              // multiply the light by material color
+              o_Target = encodeSRGB(output_color);
+          }
+        `
+
+        let vertex_shader = gl.createShader(35633);
+        gl.shaderSource(vertex_shader, vertex_shader_src);
+        gl.compileShader(vertex_shader);
+        if(!gl.getShaderParameter(vertex_shader, gl.COMPILE_STATUS)) {
+          console.log("can't compile vertex shader, err:", gl.getShaderParameter(vertex_shader, gl.COMPILE_STATUS));
+        }
+
+        let fragment_shader = gl.createShader(35632);
+        gl.shaderSource(fragment_shader, fragment_shader_src);
+        gl.compileShader(fragment_shader);
+        if(!gl.getShaderParameter(fragment_shader, gl.COMPILE_STATUS)) {
+          console.log("can't compile fragment shader, err:", gl.getShaderParameter(fragment_shader, gl.COMPILE_STATUS));
+        }
+
+        let program = gl.createProgram()
+        gl.attachShader(program, vertex_shader);
+        gl.attachShader(program, fragment_shader);
+        gl.linkProgram(program);
+
+        if(!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+          console.log("cant link program!", gl.getProgramInfoLog(program));
+        }
+
+        gl.useProgram(program);
+
+        let camera_binding_point = 0;
+        let transform_binding_point = 1;
+        let lights_binding_point = 2;
+        let albedo_binding_point = 3;
+
+        let camera_block_index = gl.getUniformBlockIndex(program, "Camera");
+        gl.uniformBlockBinding(program, camera_block_index, camera_binding_point);
+
+        let camera_block_size = gl.getActiveUniformBlockParameter(program, camera_block_index, gl.UNIFORM_BLOCK_DATA_SIZE);
+        console.log("camera block index:", camera_block_index, "binding_point:", camera_binding_point, "block size:", camera_block_size);
+
+        let transform_block_index = gl.getUniformBlockIndex(program, "Transform");
+        gl.uniformBlockBinding(program, transform_block_index, transform_binding_point);
+        let transform_block_size = gl.getActiveUniformBlockParameter(program, transform_block_index, gl.UNIFORM_BLOCK_DATA_SIZE);
+        console.log("transform block index:", transform_block_index, "binding_point:", transform_binding_point, "transform block size:", transform_block_size);
+
+        let lights_block_index = gl.getUniformBlockIndex(program, "Lights");
+        gl.uniformBlockBinding(program, lights_block_index, lights_binding_point);
+        let lights_block_size = gl.getActiveUniformBlockParameter(program, lights_block_index, gl.UNIFORM_BLOCK_DATA_SIZE);
+        console.log("lights block index:", lights_block_index, "binding_point:", lights_binding_point, "lights block size:", lights_block_size);
+
+        let albedo_block_index = gl.getUniformBlockIndex(program, "StandardMaterial_albedo");
+        gl.uniformBlockBinding(program, albedo_block_index, albedo_binding_point);
+        let albedo_block_size = gl.getActiveUniformBlockParameter(program, albedo_block_index, gl.UNIFORM_BLOCK_DATA_SIZE);
+        console.log("albedo block index:", albedo_block_index, "binding_point:", albedo_binding_point, "albedo block size:", albedo_block_size);
+
+
+        gl.bindBuffer(gl.COPY_READ_BUFFER, buffer5);
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer4);
+        gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 0, 0, 64);
+
+        gl.bindBuffer(gl.COPY_READ_BUFFER, buffer7);
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer6);
+        gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 0, 0, 976);
+
+        gl.clearColor(0.8, 0.4, 0.4, 1.0);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        gl.useProgram(program);
+
+        gl.bindBufferRange(gl.UNIFORM_BUFFER, camera_binding_point, buffer4, 0, 64);
+        gl.bindBufferRange(gl.UNIFORM_BUFFER, lights_binding_point, buffer6, 0, 976);
+
+        let vertex_position_loc = gl.getAttribLocation(program, "Vertex_Position");
+        let vertex_normal_loc = gl.getAttribLocation(program, "Vertex_Normal");
+
+        let vao = gl.createVertexArray();
+        gl.bindVertexArray(vao);
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer2);
+
+        gl.enableVertexAttribArray(vertex_position_loc);
+        gl.vertexAttribPointer(vertex_position_loc, 3, gl.FLOAT, false, 32, 0);
+
+        gl.enableVertexAttribArray(vertex_normal_loc);
+        gl.vertexAttribPointer(vertex_normal_loc, 3, gl.FLOAT, false, 32, 12);
+
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffer3);
+
+        // new frame
+
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer5);
+        data = new Uint8Array([131, 193, 162, 63, 7, 54, 219, 62, 148, 80, 155, 62, 209, 40, 155, 62, 0, 0, 0, 0, 120, 90, 5, 64, 209, 109, 1, 191, 175, 76, 1, 191, 67, 34, 244, 62, 6, 36, 146, 191, 27, 22, 79, 191, 23, 225, 78, 191, 135, 104, 164, 51, 4, 2, 217, 51, 211, 136, 14, 65, 86, 100, 30, 65]);
+        gl.bufferSubData(gl.COPY_WRITE_BUFFER, 0, data, 0, 64);
+
+        let buffer8 = gl.createBuffer();
+        gl.bindBuffer(gl.UNIFORM_BUFFER, buffer8);
+        gl.bufferData(gl.UNIFORM_BUFFER, 2560, gl.DYNAMIC_DRAW);
+
+        let buffer9 = gl.createBuffer();
+        gl.bindBuffer(gl.UNIFORM_BUFFER, buffer9);
+        gl.bufferData(gl.UNIFORM_BUFFER, 64, gl.DYNAMIC_DRAW);
+
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer9);
+        data = new Uint8Array([0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63]);
+        gl.bufferSubData(gl.COPY_WRITE_BUFFER, 0, data, 0, 64);
+
+        let buffer10 = gl.createBuffer();
+        gl.bindBuffer(gl.UNIFORM_BUFFER, buffer10);
+        gl.bufferData(gl.UNIFORM_BUFFER, 2560, gl.DYNAMIC_DRAW);
+
+        let buffer11 = gl.createBuffer();
+        gl.bindBuffer(gl.UNIFORM_BUFFER, buffer11);
+        gl.bufferData(gl.UNIFORM_BUFFER, 2560, gl.DYNAMIC_DRAW);
+
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer11);
+        data = new Uint8Array([0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63])
+        gl.bufferSubData(gl.COPY_WRITE_BUFFER, 0, data, 0, 64);
+
+        let buffer12 = gl.createBuffer();
+        gl.bindBuffer(gl.UNIFORM_BUFFER, buffer12);
+        gl.bufferData(gl.UNIFORM_BUFFER, 2560, gl.DYNAMIC_DRAW);
+
+        let buffer13 = gl.createBuffer();
+        gl.bindBuffer(gl.UNIFORM_BUFFER, buffer13);
+        gl.bufferData(gl.UNIFORM_BUFFER, 32, gl.DYNAMIC_DRAW);
+
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer13);
+        data = new Uint8Array([111, 148, 26, 63, 189, 94, 229, 62, 146, 24, 163, 62, 0, 0, 128, 63, 0, 0, 128, 63, 10, 215, 163, 61, 225, 122, 20, 63, 0, 0, 128, 63]);
+        gl.bufferSubData(gl.COPY_WRITE_BUFFER, 0, data, 0, 32);
+
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer7);
+        data = new Uint8Array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 215, 179, 221, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 215, 179, 221, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 171, 65, 128, 191, 0, 0, 128, 191, 215, 179, 221, 64, 215, 179, 93, 65, 130, 118, 131, 192, 0, 0, 128, 192, 0, 0, 128, 64, 0, 0, 0, 65, 0, 0, 128, 64, 0, 0, 128, 63, 255, 255, 127, 63, 255, 255, 127, 63, 255, 255, 127, 63, 0, 0, 128, 63]);
+        gl.bufferSubData(gl.COPY_WRITE_BUFFER, 0, data, 0, 112);
+
+        gl.bindBuffer(gl.COPY_READ_BUFFER, buffer13);
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer12);
+        gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 0, 0, 16);
+
+        gl.bindBuffer(gl.COPY_READ_BUFFER, buffer13);
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer12);
+        gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 16, 256, 16);
+
+        gl.bindBuffer(gl.COPY_READ_BUFFER, buffer5);
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer4);
+        gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 0, 0, 64);
+
+        gl.bindBuffer(gl.COPY_READ_BUFFER, buffer11);
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer10);
+        gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 0, 0, 64);
+
+        gl.bindBuffer(gl.COPY_READ_BUFFER, buffer7);
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer6);
+        gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 0, 0, 976);
+
+        gl.bindBuffer(gl.COPY_READ_BUFFER, buffer9);
+        gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer8);
+        gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 0, 0, 64);
+
+
+        gl.clearColor(0.4, 0.4, 0.4, 1.0);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        gl.useProgram(program);
+
+        gl.bindBufferRange(gl.UNIFORM_BUFFER, camera_binding_point, buffer4, 0, 64);
+        gl.bindBufferRange(gl.UNIFORM_BUFFER, transform_binding_point, buffer10, 0, 256);
+        gl.bindBufferRange(gl.UNIFORM_BUFFER, lights_binding_point, buffer6, 0, 976);
+        gl.bindBufferRange(gl.UNIFORM_BUFFER, albedo_binding_point, buffer12, 0, 256);
+
+        gl.bindVertexArray(vao);
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffer3);
+        gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_INT, 0);
+
+        gl.bindVertexArray(null);
+        gl.flush();
+
+        function on_animation_frame() {
+          gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer5);
+          data = new Uint8Array([131, 193, 162, 63, 7, 54, 219, 62, 148, 80, 155, 62, 209, 40, 155, 62, 0, 0, 0, 0, 120, 90, 5, 64, 209, 109, 1, 191, 175, 76, 1, 191, 67, 34, 244, 62, 6, 36, 146, 191, 27, 22, 79, 191, 23, 225, 78, 191, 135, 104, 164, 51, 4, 2, 217, 51, 211, 136, 14, 65, 86, 100, 30, 65]);
+          gl.bufferSubData(gl.COPY_WRITE_BUFFER, 0, data, 0, 64);
+
+          gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer9);
+          data = new Uint8Array([0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63]);
+          gl.bufferSubData(gl.COPY_WRITE_BUFFER, 0, data, 0, 64);
+
+          gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer11);
+          data = new Uint8Array([0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 128, 63])
+          gl.bufferSubData(gl.COPY_WRITE_BUFFER, 0, data, 0, 64);
+
+          gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer13);
+          data = new Uint8Array([111, 148, 26, 63, 189, 94, 229, 62, 146, 24, 163, 62, 0, 0, 128, 63, 0, 0, 128, 63, 10, 215, 163, 61, 225, 122, 20, 63, 0, 0, 128, 63]);
+          gl.bufferSubData(gl.COPY_WRITE_BUFFER, 0, data, 0, 32);
+
+          gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer7);
+          data = new Uint8Array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 215, 179, 221, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 215, 179, 221, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 171, 65, 128, 191, 0, 0, 128, 191, 215, 179, 221, 64, 215, 179, 93, 65, 130, 118, 131, 192, 0, 0, 128, 192, 0, 0, 128, 64, 0, 0, 0, 65, 0, 0, 128, 64, 0, 0, 128, 63, 255, 255, 127, 63, 255, 255, 127, 63, 255, 255, 127, 63, 0, 0, 128, 63]);
+          gl.bufferSubData(gl.COPY_WRITE_BUFFER, 0, data, 0, 112);
+
+          gl.bindBuffer(gl.COPY_READ_BUFFER, buffer13);
+          gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer12);
+          gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 0, 0, 16);
+
+          gl.bindBuffer(gl.COPY_READ_BUFFER, buffer13);
+          gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer12);
+          gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 16, 256, 16);
+
+          gl.bindBuffer(gl.COPY_READ_BUFFER, buffer5);
+          gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer4);
+          gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 0, 0, 64);
+
+          gl.bindBuffer(gl.COPY_READ_BUFFER, buffer11);
+          gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer10);
+          gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 0, 0, 64);
+
+          gl.bindBuffer(gl.COPY_READ_BUFFER, buffer7);
+          gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer6);
+          gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 0, 0, 976);
+
+          gl.bindBuffer(gl.COPY_READ_BUFFER, buffer9);
+          gl.bindBuffer(gl.COPY_WRITE_BUFFER, buffer8);
+          gl.copyBufferSubData(gl.COPY_READ_BUFFER, gl.COPY_WRITE_BUFFER, 0, 0, 64);
+
+
+          gl.clearColor(0.4, 0.4, 0.4, 1.0);
+          gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+          gl.useProgram(program);
+
+          gl.bindBufferRange(gl.UNIFORM_BUFFER, camera_binding_point, buffer4, 0, 64);
+          gl.bindBufferRange(gl.UNIFORM_BUFFER, transform_binding_point, buffer10, 0, 256);
+          gl.bindBufferRange(gl.UNIFORM_BUFFER, lights_binding_point, buffer6, 0, 976);
+          gl.bindBufferRange(gl.UNIFORM_BUFFER, albedo_binding_point, buffer12, 0, 256);
+
+          gl.bindVertexArray(vao);
+          //gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffer3);
+          gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_INT, 0);
+
+          gl.bindVertexArray(null);
+          gl.flush();
+          window.requestAnimationFrame(on_animation_frame);
+        }
+        window.requestAnimationFrame(on_animation_frame);
+        console.log("v2", gl);
+    </script>
+  </body>
+</html>

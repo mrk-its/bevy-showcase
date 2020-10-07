@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179077851-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-179077851-1');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="webgl">
+    <title>Bevy WASM examples</title>
+    <link rel="stylesheet" href="css/pure/pure-min.css?v=1">
+    <link rel="stylesheet" href="css/side-menu.css?v=1">
+    <style>
+        iframe {
+            border-width: 0px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="layout">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
+
+        <div id="menu">
+            <div class="pure-menu">
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-heading">2-D</li>
+                    <li class="pure-menu-item"><a id="sprite" href="sprite.html" class="pure-menu-link">sprite</a></li>
+                    <li class="pure-menu-item"><a id="sprite_sheet" href="sprite_sheet.html"
+                            class="pure-menu-link">sprite_sheet</a></li>
+                    <li class="pure-menu-heading">3-D</li>
+                    <li class="pure-menu-item">
+                        <a id="3d_scene" href="3d_scene.html" class="pure-menu-link">3d_scene</a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a id="load_gltf" href="load_gltf.html" class="pure-menu-link">load_gltf</a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a id="parenting" href="parenting.html" class="pure-menu-link">parenting</a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a id="texture" href="texture.html" class="pure-menu-link">texture</a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a id="z_sort_debug" href="z_sort_debug.html" class="pure-menu-link">z_sort_debug</a>
+                    </li>
+                    <li class="pure-menu-heading">Other</li>
+                    <li class="pure-menu-item">
+                        <a id="robbo" href="https://mrk.sed.pl/bevy-robbo/" class="pure-menu-link">Robbo!</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="main">
+            <!--
+        <div class="header">
+            <h1>Page Title</h1>
+            <h2>A subtitle for your page goes here</h2>
+        </div>
+    -->
+
+            <div class="content">
+                <iframe width="1280" height="730" name="webgl"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/ui.js"></script>
+    <script>
+        function reload_iframe() {
+            document.getElementById(window.location.hash.substring(1)).click()
+        };
+        // window.addEventListener("hashchange", reload_iframe, false);
+        document.getElementById("menu").addEventListener("click", function (event) {
+            if (event.target.tagName == 'A' && event.target.id) {
+                console.log("click!", event);
+                window.location.hash = '#' + event.target.id;
+            }
+        }, false)
+        if (window.location.hash.length > 1) {
+            reload_iframe();
+        };
+    </script>
+</body>
+
+</html>
