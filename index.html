@@ -20,6 +20,9 @@
         iframe {
             border-width: 0px;
         }
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -36,6 +39,8 @@
             <div class="pure-menu">
                 <ul class="pure-menu-list">
                     <li class="pure-menu-heading">2-D</li>
+                    <li class="pure-menu-item"><a id="contributors" href="contributors.html"
+                            class="pure-menu-link">contributors</a></li>
                     <li class="pure-menu-item"><a id="sprite" href="sprite.html" class="pure-menu-link">sprite</a></li>
                     <li class="pure-menu-item"><a id="sprite_sheet" href="sprite_sheet.html"
                             class="pure-menu-link">sprite_sheet</a></li>
@@ -55,6 +60,19 @@
                     <li class="pure-menu-item">
                         <a id="z_sort_debug" href="z_sort_debug.html" class="pure-menu-link">z_sort_debug</a>
                     </li>
+                    <li class="pure-menu-heading">UI</li>
+                    <li class="pure-menu-item"><a id="button" href="button.html" class="pure-menu-link">button</a></li>
+                    <li class="pure-menu-item"><a id="font_atlas_debug" href="font_atlas_debug.html"
+                            class="pure-menu-link">font_atlas_debug</a></li>
+                    <li class="pure-menu-item"><a id="text_debug" href="text_debug.html"
+                            class="pure-menu-link">text_debug</a></li>
+                    <li class="pure-menu-item"><a id="text" href="text.html" class="pure-menu-link">text</a></li>
+                    <li class="pure-menu-item"><a id="ui" href="ui.html" class="pure-menu-link">ui</a></li>
+
+                    <li class="pure-menu-heading">Game</li>
+                    <li class="pure-menu-item"><a id="breakout" href="breakout.html" class="pure-menu-link">breakout</a>
+                    </li>
+
                     <li class="pure-menu-heading">Other</li>
                     <li class="pure-menu-item">
                         <a id="robbo" href="https://mrk.sed.pl/bevy-robbo/" class="pure-menu-link">Robbo!</a>
@@ -72,7 +90,10 @@
     -->
 
             <div class="content">
-                <iframe width="1280" height="730" name="webgl"></iframe>
+                <iframe width="1280" height="730" name="webgl" id="iframe"></iframe>
+                <h1>bevy_webgl2 renderer plugin showcase</h1>
+                <p>What you see here is bunch of Bevy's examples compiled to wasm32-unknown-unknown target and using
+                    <a href="https://github.com/mrk-its/bevy_webgl2">bevy_webgl2</a> external plugin as rendering backend</p>
             </div>
         </div>
     </div>
@@ -87,6 +108,7 @@
             if (event.target.tagName == 'A' && event.target.id) {
                 console.log("click!", event);
                 window.location.hash = '#' + event.target.id;
+                document.getElementById("iframe").focus();
             }
         }, false)
         if (window.location.hash.length > 1) {
