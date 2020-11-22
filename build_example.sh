@@ -8,7 +8,7 @@ fi
 mkdir -p ${OUT_DIR}/wasm
 cp -a assets/ ${OUT_DIR}
 cargo build  $RELEASE_OPTS --example $EXAMPLE --target wasm32-unknown-unknown
-wasm-bindgen --no-typescript --out-dir ${OUT_DIR}/wasm --out-name $EXAMPLE --target web target/wasm32-unknown-unknown/$RELEASE/examples/${EXAMPLE}.wasm
+wasm-bindgen --no-typescript --out-dir ${OUT_DIR}/wasm --out-name $EXAMPLE --target web ${CARGO_TARGET_DIR:-target}/wasm32-unknown-unknown/$RELEASE/examples/${EXAMPLE}.wasm
 wasm-opt -Os -o out.wasm ${OUT_DIR}/wasm/${EXAMPLE}_bg.wasm && mv out.wasm ${OUT_DIR}/wasm/${EXAMPLE}_bg.wasm
 sed 's|\.js\$/, |\.js/, |' -i ${OUT_DIR}/wasm/${EXAMPLE}.js
 envsubst < $OUT_DIR/template_index.html > $OUT_DIR/${EXAMPLE}.html
