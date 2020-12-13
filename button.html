@@ -19,8 +19,17 @@
   </style>
 </head>
 <script type="module">
-  import init from './wasm/button.js?ts=2020-11-15T18:04:03+00:00'
+  import init from './wasm/button/wasm.js?ts=2020-12-13T16:55:46+00:00'
   init()
+  function auto_focus() {
+    let canvas = document.getElementsByTagName("canvas");
+    if (!canvas.length) {
+      setTimeout(auto_focus, 100);
+    } else {
+      canvas[0].focus();
+    }
+  }
+  auto_focus();
 </script>
 
 <body>

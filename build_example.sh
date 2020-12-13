@@ -1,16 +1,12 @@
+set -x
 OUT_DIR=$(dirname $0)
 export EXAMPLE=$1
 export TS=$(date -u --iso-8601=seconds)
-RELEASE=${2:-release}
-if [ $RELEASE == "release" ]; then
-   RELEASE_OPTS="--release"
-fi
-mkdir -p ${OUT_DIR}/wasm
+mkdir -p ${OUT_DIR}/wasm/$EXAMPLE
 cp -a assets/ ${OUT_DIR}
-cargo build  $RELEASE_OPTS --example $EXAMPLE --target wasm32-unknown-unknown
-wasm-bindgen --no-typescript --out-dir ${OUT_DIR}/wasm --out-name $EXAMPLE --target web ${CARGO_TARGET_DIR:-target}/wasm32-unknown-unknown/$RELEASE/examples/${EXAMPLE}.wasm
-wasm-opt -Os -o out.wasm ${OUT_DIR}/wasm/${EXAMPLE}_bg.wasm && mv out.wasm ${OUT_DIR}/wasm/${EXAMPLE}_bg.wasm
-sed 's|\.js\$/, |\.js/, |' -i ${OUT_DIR}/wasm/${EXAMPLE}.js
+cargo make build-example $EXAMPLE -p release
+wasm-opt -Os -o out.wasm target/wasm_bg.wasm && mv out.wasm ${OUT_DIR}/wasm/${EXAMPLE}/wasm_bg.wasm
+sed 's|\.js\$/, |\.js/, |' < target/wasm.js > ${OUT_DIR}/wasm/${EXAMPLE}/wasm.js
 envsubst < $OUT_DIR/template_index.html > $OUT_DIR/${EXAMPLE}.html
 echo
 echo http://127.0.0.1:4000/${EXAMPLE}.html
